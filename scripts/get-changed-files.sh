@@ -75,8 +75,8 @@ for EXT in py sql md; do
         > "/tmp/pydoctor_relative_${EXT}.txt"
 
         COUNT=$(wc -l < "$RAW_FILE" | tr -d ' ')
-        echo "ℹ️  Python Doctor: found ${COUNT} changed .${EXT} file(s) in ${APP_PATH}"
+        echo "ℹ️  Python Nurse: found ${COUNT} changed .${EXT} file(s) in ${APP_PATH}"
     else
-        echo "ℹ️  Python Doctor: no changed .${EXT} files found in ${APP_PATH}"
+        echo "ℹ️  Python Nurse: no changed .${EXT} files found in ${APP_PATH}"
     fi
 done

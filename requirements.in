@@ -1,4 +1,4 @@
-# Python Doctor — analysis tools
+# Python Nurse — analysis tools
 # Compile with: pip-compile requirements.in -c constraints.txt
 # See: https://pip-tools.readthedocs.io/en/latest/cli/pip-compile/
 

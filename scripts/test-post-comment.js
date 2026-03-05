@@ -13,7 +13,7 @@ const mockCore = {
 
 const mockContext = {
     eventName: "pull_request",
-    repo: { owner: "test", repo: "python-doctor" },
+    repo: { owner: "test", repo: "python-nurse" },
     issue: { number: 1 },
 };
 

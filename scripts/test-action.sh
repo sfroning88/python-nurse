@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# test-action.sh — Run the Python Doctor sequence locally and "post" a dry-run comment.
+# test-action.sh — Run the Python Nurse sequence locally and "post" a dry-run comment.
 # Strict: exits 1 on any error. Use as pre-push check via `pnpm local-test`.
 set -euo pipefail
 
@@ -99,4 +99,4 @@ node "$SCRIPT_DIR/test-post-comment.js" || {
 }
 
 echo ""
-echo "✅ Python Doctor local test passed"
+echo "✅ Python Nurse local test passed"

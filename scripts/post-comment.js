@@ -125,14 +125,14 @@ module.exports = async function postComment({ github, context, core }) {
     // Expose outputs for downstream steps
     core.setOutput("score", String(score));
     core.setOutput("has_findings", String(findings.length > 0));
-    core.info(`🐍 Python Doctor  — score: ${score}/100 (${label})`);
+    core.info(`🐍 Python Nurse  — score: ${score}/100 (${label})`);
 
     const isDryRun = process.env.DRY_RUN === "1";
 
     // ── Build comment body ─────────────────────────────────────────────────
     if (!isDryRun && (!shouldPost || !isPR || findings.length === 0)) {
         if (findings.length === 0) {
-            core.info("✅ Python Doctor: no issues found — skipping comment.");
+            core.info("✅ Python Nurse: no issues found — skipping comment.");
         }
 
         // Still delete a stale comment from a previous run if the code is now clean
@@ -142,7 +142,7 @@ module.exports = async function postComment({ github, context, core }) {
         if (!isDryRun) return;
     }
 
-    const MARKER = "<!-- python-doctor -->";
+    const MARKER = "<!-- python-nurse -->";
     const MAX_COMMENT = 60_000;
 
     // Score bar (rough visual)
@@ -178,7 +178,7 @@ module.exports = async function postComment({ github, context, core }) {
 
     // ── Upsert comment (or dry-run print) ──────────────────────────────────
     if (isDryRun) {
-        console.log("\n" + "─".repeat(60) + "\n📋 Python Doctor — dry-run comment output:\n" + "─".repeat(60));
+        console.log("\n" + "─".repeat(60) + "\n📋 Python Nurse — dry-run comment output:\n" + "─".repeat(60));
         console.log(body);
         console.log("─".repeat(60) + "\n");
         return;
@@ -190,13 +190,13 @@ module.exports = async function postComment({ github, context, core }) {
     await deleteExistingComment({ github, context });
 
     await github.rest.issues.createComment({ owner, repo, issue_number, body });
-    core.info("💬 Python Doctor: PR comment posted.");
+    core.info("💬 Python Nurse: PR comment posted.");
 };
 
 // ── Utility ───────────────────────────────────────────────────────────────────
 
 async function deleteExistingComment({ github, context }) {
-    const MARKER = "<!-- python-doctor -->";
+    const MARKER = "<!-- python-nurse -->";
     const { owner, repo } = context.repo;
     const issue_number = context.issue.number;
 
