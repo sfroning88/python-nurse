@@ -1,10 +1,11 @@
 # Python Nurse — analysis tools
+# Requires Python 3.13+
 # Compile with: pip-compile requirements.in -c constraints.txt
 # See: https://pip-tools.readthedocs.io/en/latest/cli/pip-compile/
 
-ruff
-mypy
-bandit[toml]
-vulture
-radon
-sqlfluff
+ruff>=0.15
+mypy>=2.0
+bandit[toml]>=1.8
+vulture>=2.14
+radon>=6.0
+sqlfluff>=4.0
