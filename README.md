@@ -76,7 +76,7 @@ See [examples/monorepo-workflow.yml](examples/monorepo-workflow.yml) for a full 
 | ----- | ------- | ----------- |
 | `app-path` | *(required)* | Path to the Python app relative to repo root (e.g. `apps/backend`) |
 | `github-token` | *(required)* | GitHub token for posting PR comments |
-| `python-version` | `3.11` | Python version to use |
+| `python-version` | `3.13` | Python version to use |
 | `base-ref` | `github.base_ref` or `main` | Base branch to diff against |
 | `head-sha` | `github.event.pull_request.head.sha` or `github.sha` | Head commit SHA |
 | `ruff-enabled` | `true` | Run Ruff (lint + style) |
