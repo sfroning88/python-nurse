@@ -10,6 +10,8 @@
 #   /tmp/pydoctor_changed_md.txt   — repo-root-relative .md paths  (may be empty)
 #   /tmp/pydoctor_relative_md.txt  — app-relative .md paths       (for cd + xargs)
 #
+# Paths under tests/ or e2e/ are excluded (pytest fixtures and e2e harnesses).
+#
 # Required env vars: BASE_REF, HEAD_SHA, APP_PATH
 
 set -euo pipefail
@@ -30,6 +32,22 @@ try_diff() {
     git diff --name-only --diff-filter=ACMR "${from}...${to}" 2>/dev/null \
         | grep -E "^${ESCAPED_PATH}/.*\\.${ext}$" \
         >> "$outfile" || true
+}
+
+# Paths under tests/ or e2e/ are skipped — they often violate production lint rules.
+filter_excluded_dirs() {
+    local infile="$1"
+    if [ ! -s "$infile" ]; then
+        return
+    fi
+    local before after
+    before=$(wc -l < "$infile" | tr -d ' ')
+    grep -Ev '/(tests|e2e)/' "$infile" > "${infile}.filtered" || : > "${infile}.filtered"
+    mv "${infile}.filtered" "$infile"
+    after=$(wc -l < "$infile" | tr -d ' ')
+    if [ "$before" -gt "$after" ]; then
+        echo "ℹ️  Python Nurse: excluded $((before - after)) file(s) under tests/ or e2e/"
+    fi
 }
 
 # ── Initialise output files ────────────────────────────────────────────────
@@ -63,8 +81,9 @@ for EXT in py sql md; do
         fi
     fi
 
-    # Deduplicate + sort
+    # Deduplicate + sort, then drop test/e2e paths
     sort -u "$RAW_FILE" -o "$RAW_FILE"
+    filter_excluded_dirs "$RAW_FILE"
 
     if [ -s "$RAW_FILE" ]; then
         # Absolute paths (repo-root-relative)
