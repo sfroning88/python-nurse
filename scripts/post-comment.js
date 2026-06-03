@@ -43,6 +43,7 @@ const NOISE = [
     /^no issues/i,
     /no issues identified/i,
     /^success/i,
+    /all checks passed/i,
     /^\s*$/,
 ];
 
@@ -58,6 +59,9 @@ function readTool(tool) {
         return { content: null, hasFindings: false, findingCount: 0 };
     }
     const findingCount = countFindings(raw);
+    if (findingCount === 0) {
+        return { content: null, hasFindings: false, findingCount: 0 };
+    }
     return { content: raw, hasFindings: true, findingCount };
 }
 

@@ -230,3 +230,7 @@ Icon?
 # Test fixtures
 test-fixture
 test-fixture/**
+
+# DS Store
+.DS_Store
+*.DS_Store
