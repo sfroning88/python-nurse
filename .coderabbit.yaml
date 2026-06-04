@@ -1,0 +1,121 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+
+language: "en-US"
+tone_instructions: "Be extremely concise and direct. No fluff. The less words you use, the better. Speak in plain english."
+
+early_access: false
+
+reviews:
+  profile: "chill"
+  high_level_summary: false
+  auto_title_placeholder: "@coderabbitai"
+  review_status: false
+  review_details: true
+  commit_status: false
+  fail_commit_status: false
+  collapse_walkthrough: true
+  changed_files_summary: false
+  sequence_diagrams: false
+  estimate_code_review_effort: false
+  assess_linked_issues: true
+  related_issues: true
+  related_prs: false
+  suggested_labels: false
+  suggested_reviewers: false
+  auto_assign_reviewers: false
+  in_progress_fortune: true
+  poem: true
+  enable_prompt_for_ai_agents: true
+  path_filters:
+    - "!dist/**"
+    - "!node_modules/**"
+    - "!**/.next/**"
+    - "!**/out/**"
+    - "!**/.turbo/**"
+    - "!**/*.md"
+    - "!**/*.txt"
+    - "!**/__pycache__/**"
+    - "!**/.venv/**"
+    - "!**/generated/**"
+    - "!*.lock"
+    - "!pnpm-lock.yaml"
+  abort_on_close: true
+  disable_cache: false
+  auto_review:
+    enabled: true
+    auto_incremental_review: true
+    auto_pause_after_reviewed_commits: 0
+    drafts: true
+    base_branches:
+      - "main"
+      - "master"
+    ignore_title_keywords:
+      - "documentation"
+      - "antirabbit"
+    labels:
+      - "!documentation"
+      - "!antirabbit"
+  tools:
+    languagetool:
+      enabled: true
+      level: "default"
+      disabled_categories:
+        - "GRAMMAR"
+        - "PUNCTUATION"
+        - "STYLE"
+        - "REDUNDANCY"
+        - "REPETITIONS"
+    ruff:
+      enabled: false
+    markdownlint:
+      enabled: false
+    flake8:
+      enabled: false
+    pylint:
+      enabled: false
+  finishing_touches:
+    docstrings:
+      enabled: false
+    unit_tests:
+      enabled: false
+  pre_merge_checks:
+    docstrings:
+      mode: "off"
+    title:
+      mode: "off"
+    description:
+      mode: "off"
+    issue_assessment:
+      mode: "off"
+
+chat:
+  art: true
+  auto_reply: true
+
+knowledge_base:
+  opt_out: true
+  web_search:
+    enabled: true
+  code_guidelines:
+    enabled: false
+  learnings:
+    scope: "auto"
+  issues:
+    scope: "auto"
+  jira:
+    usage: "disabled"
+  linear:
+    usage: "disabled"
+
+code_generation:
+  docstrings:
+    language: en-US
+
+issue_enrichment:
+  auto_enrich:
+    enabled: true
+  planning:
+    enabled: true
+    auto_planning:
+      enabled: true
+      
