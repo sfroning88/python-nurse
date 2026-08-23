@@ -45,6 +45,10 @@ inputs:
     description: "Minimum confidence threshold for Vulture (60–100)"
     required: false
     default: "80"
+  vulture-ignore-names:
+    description: "Comma-separated names Vulture should ignore (FastAPI/Starlette request params required by rate limiters)"
+    required: false
+    default: "request"
   radon-enabled:
     description: "Run Radon (complexity)"
     required: false
@@ -184,6 +188,7 @@ runs:
         if [ -s /tmp/pydoctor_changed_py.txt ]; then
           cd "${{ inputs.app-path }}"
           xargs vulture --min-confidence ${{ inputs.vulture-min-confidence }} \
+            --ignore-names ${{ inputs.vulture-ignore-names }} \
             2>&1 < /tmp/pydoctor_relative_py.txt | tee /tmp/pydoctor_vulture.txt || true
         else
           echo "" > /tmp/pydoctor_vulture.txt
