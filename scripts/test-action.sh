@@ -67,7 +67,7 @@ echo "🔒 Running Bandit..."
 xargs bandit -ll 2>&1 < /tmp/pydoctor_relative_py.txt | tee /tmp/pydoctor_bandit.txt || true
 
 echo "🪦 Running Vulture..."
-xargs vulture --min-confidence 80 2>&1 < /tmp/pydoctor_relative_py.txt | tee /tmp/pydoctor_vulture.txt || true
+xargs vulture --min-confidence 80 --ignore-names request 2>&1 < /tmp/pydoctor_relative_py.txt | tee /tmp/pydoctor_vulture.txt || true
 
 echo "📐 Running Radon..."
 {

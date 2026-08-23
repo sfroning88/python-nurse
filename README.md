@@ -84,6 +84,7 @@ See [examples/monorepo-workflow.yml](examples/monorepo-workflow.yml) for a full 
 | `bandit-enabled` | `true` | Run Bandit (security) |
 | `vulture-enabled` | `true` | Run Vulture (dead code) |
 | `vulture-min-confidence` | `80` | Vulture confidence threshold (60–100) |
+| `vulture-ignore-names` | `request` | Comma-separated names Vulture ignores (FastAPI/Starlette `request: Request` params) |
 | `radon-enabled` | `true` | Run Radon (complexity) |
 | `markdownlint-enabled` | `true` | Run markdownlint (Markdown) |
 | `sqlfluff-enabled` | `true` | Run SQLFluff (SQL) |
